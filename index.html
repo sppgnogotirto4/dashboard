@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="logo.ico" />
+    <!-- Icon dihapus karena tidak dapat diakses di lingkungan ini -->
     <title>Dashboard Presensi | SPPG Nogotirto</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons untuk estetika modern -->
@@ -10,80 +11,26 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap');
         
+        /* Menggunakan warna biru tua yang elegan sebagai aksen utama */
+        :root {
+            --primary-color: #1e3a8a; /* Dark Blue */
+            --accent-color: #34d399; /* Emerald Green */
+            --text-light: #f3f4f6;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
-            align-items: flex-start; /* Menggunakan flex-start agar konten bisa discroll */
+            align-items: flex-start;
             justify-content: center;
             padding: 30px 15px;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* URL GAMBAR DARI USER */
-            background-image: url('./sppg.jpeg'); 
-            
-            /* Overlay Gelap untuk kontras teks putih */
+            /* URL GAMBAR LATAR BELAKANG (diambil dari image_e2cb92.jpg yang diunggah) */
+            background-image: url('./sppg.jpeg');
             position: relative;
-        }
-
-        /* Glassmorphism Effect */
-        .glass-container {
-            position: relative;
-            z-index: 10;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
-            backdrop-filter: blur(15px) saturate(150%); /* Blur lebih halus */
-            -webkit-backdrop-filter: blur(15px) saturate(150%);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            color: white;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 6px 40px rgba(0, 0, 0, 0.3); 
-        }
-
-        /* Warna khusus untuk Check-In/Out di Glassmorphism */
-        .checkin-tag {
-            background: rgba(52, 211, 153, 0.3); /* Green */
-            border: 1px solid rgba(52, 211, 153, 0.5);
-            color: #d1fae5; /* Text Green Light */
-            padding: 4px 10px;
-            border-radius: 9999px;
-            font-weight: 600;
-        }
-        .checkout-tag {
-            background: rgba(99, 102, 241, 0.3); /* Indigo */
-            border: 1px solid rgba(99, 102, 241, 0.5);
-            color: #e0e7ff; /* Text Indigo Light */
-            padding: 4px 10px;
-            border-radius: 9999px;
-            font-weight: 600;
-        }
-
-        /* Navigasi */
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 8px 16px;
-            font-weight: 600;
-            color: white;
-            transition: background 0.2s;
-        }
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        .nav-btn.active {
-            background: white;
-            color: #1e3a8a; /* Dark Blue */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
         /* Overlay pada body */
@@ -94,36 +41,106 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Gelap sedikit, pertahankan kontras */
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay lebih gelap untuk kontras Glassmorphism */
             z-index: 5;
         }
+
+        /* Glassmorphism Effect */
+        .glass-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px) saturate(180%); /* Blur lebih kuat */
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px; /* Sudut lebih melengkung */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Warna khusus untuk Check-In/Out di Glassmorphism */
+        .checkin-tag {
+            background: rgba(52, 211, 153, 0.3); /* Emerald */
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #d1fae5;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        .checkout-tag {
+            background: rgba(99, 102, 241, 0.3); /* Indigo */
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            color: #e0e7ff;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        /* Navigasi */
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: white;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        .nav-btn.active {
+            background: white;
+            color: var(--primary-color); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(0);
+        }
+        
+        /* Style untuk input date */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Membuat ikon kalender berwarna putih */
+        }
+        input[type="date"] {
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
-    <div class="max-w-5xl w-full glass-container">
+    <div class="max-w-6xl w-full glass-container">
         
         <!-- Header & Navigasi -->
-        <header class="mb-8 p-4 glass-card shadow-lg">
+        <header class="mb-8 p-4 glass-card shadow-xl">
             <h1 class="text-3xl font-extrabold tracking-tight">Dashboard Presensi SPPG Nogotirto</h1>
-            <p class="text-sm text-gray-300">Data Realtime dari Google Apps Script</p>
+            <p class="text-sm text-gray-300">Aplikasi monitoring data real-time</p>
             
-            <div class="flex space-x-4 mt-4">
+            <div class="flex flex-wrap gap-4 mt-4">
                 <button id="nav-realtime" onclick="showPage('realtime')" class="nav-btn active flex items-center">
-                    <i data-lucide="zap" class="w-4 h-4 mr-1"></i> Realtime Log
+                    <i data-lucide="zap" class="w-4 h-4 mr-2"></i> Realtime Log
                 </button>
                 <button id="nav-rekap" onclick="showPage('rekap')" class="nav-btn flex items-center">
-                    <i data-lucide="clock" class="w-4 h-4 mr-1"></i> Rekapitulasi Harian
+                    <i data-lucide="clipboard-list" class="w-4 h-4 mr-2"></i> Rekapitulasi Harian
                 </button>
             </div>
         </header>
 
-        <!-- Container Halaman -->
+        <!-- CONTAINER REALTIME LOG -->
         <div id="page-realtime" class="glass-card p-6 md:p-8 space-y-6">
             <h2 class="text-2xl font-bold border-b border-white/20 pb-2">Log Presensi Terbaru</h2>
             <div id="realtime-header" class="flex justify-between items-center">
-                <p class="text-sm text-gray-300">Muat ulang secara manual untuk mendapatkan log terbaru.</p>
-                <button onclick="fetchLogs()" class="nav-btn bg-white/30 hover:bg-white/40 flex items-center">
-                    <i data-lucide="refresh-cw" class="w-4 h-4 mr-1"></i> Refresh
+                <p class="text-sm text-gray-300 hidden sm:block">Muat ulang secara manual untuk mendapatkan log terbaru.</p>
+                <button onclick="fetchLogs()" class="nav-btn bg-white/30 hover:bg-white/40 flex items-center ml-auto">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i> Refresh Log
                 </button>
             </div>
 
@@ -132,7 +149,7 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="font-semibold">Mengambil data...</p>
+                <p class="font-semibold">Mengambil data realtime...</p>
             </div>
             
             <div id="log-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -164,7 +181,7 @@
                     <input type="text" id="nameFilter" placeholder="Cari nama pegawai..." class="w-full p-2 rounded glass-card text-white bg-white/20 focus:ring-2 focus:ring-white/50 border-transparent focus:border-transparent">
                 </div>
                 <button onclick="fetchRekap()" class="nav-btn bg-white/40 hover:bg-white/50 w-full md:w-auto flex items-center justify-center">
-                    <i data-lucide="search" class="w-4 h-4 mr-1"></i> Cari Rekap
+                    <i data-lucide="search" class="w-4 h-4 mr-2"></i> Cari Rekap
                 </button>
             </div>
 
@@ -192,7 +209,8 @@
         // =========================================================================
         // URL WEB APP GOOGLE APPS SCRIPT DARI USER
         // =========================================================================
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxdwvjEoFPCjTD9StVy2ue5x7Bmkku9Mja4Hbr7uufvBlHLr1-VEn0eTA-DCPnxIn28/exec"; 
+        // PENTING: URL ini harus di-deploy dengan 'Execute as: Me' dan 'Who has access: Anyone'
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxdwvjEoFPCjTD9StVy2ue5x7Bmkku9Mja4Hbr7uufvBlHLr1-VEn0eTA-DCPnxIn28/exec";
         
         // Elemen DOM
         const logContainer = document.getElementById('log-container');
@@ -226,11 +244,14 @@
         // ===============================================
 
         function showPage(pageId) {
+            // Sembunyikan semua halaman
             document.getElementById('page-realtime').classList.add('hidden');
             document.getElementById('page-rekap').classList.add('hidden');
+            // Hapus status active dari semua tombol nav
             document.getElementById('nav-realtime').classList.remove('active');
             document.getElementById('nav-rekap').classList.remove('active');
 
+            // Tampilkan halaman yang dipilih dan atur status active
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
             document.getElementById(`nav-${pageId}`).classList.add('active');
 
@@ -280,26 +301,24 @@
          * Memanggil Apps Script API untuk log realtime.
          */
         async function fetchLogs() {
-            // DEBUGGING: Tampilkan URL di konsol untuk verifikasi
-            console.log("Mencoba mengambil data dari URL:", GAS_WEB_APP_URL);
+            console.log("Mencoba mengambil data realtime dari URL:", GAS_WEB_APP_URL);
             
             if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL.includes("[GANTI")) {
                 errorTextRealtime.textContent = "URL API Web App Apps Script belum valid.";
                 errorRealtime.classList.remove('hidden');
                 loadingRealtime.classList.add('hidden');
+                logContainer.innerHTML = '';
                 return;
             }
 
             loadingRealtime.classList.remove('hidden');
-            logContainer.classList.add('hidden');
             errorRealtime.classList.add('hidden');
+            logContainer.classList.add('hidden');
+            logContainer.innerHTML = ''; // Kosongkan kontainer sebelum memuat
 
             try {
                 const response = await fetch(GAS_WEB_APP_URL, {
                     method: 'POST',
-                    // Gunakan 'no-cors' sebagai percobaan kedua jika 'cors' gagal 
-                    // namun ini akan membuat response tidak bisa dibaca (data akan kosong)
-                    // Kita kembalikan ke 'cors' yang diperlukan untuk membaca JSON
                     mode: 'cors', 
                     headers: {
                         'Content-Type': 'application/json',
@@ -309,13 +328,10 @@
                     })
                 });
                 
-                // Pastikan status response OK (200)
                 if (!response.ok) {
                     throw new Error(`Permintaan gagal dengan status ${response.status}.`);
                 }
 
-                // Coba parse response. Jika response kosong (bisa jadi karena masalah CORS
-                // yang tidak terdeteksi oleh browser), .json() akan gagal.
                 const data = await response.json();
 
                 if (data.error) {
@@ -328,8 +344,13 @@
                 console.error('Fetch Realtime Error:', error);
                 errorTextRealtime.textContent = 'Gagal memuat log realtime. Pastikan URL Web App sudah benar dan di-deploy ulang dengan akses "Anyone". Detail: ' + error.message;
                 errorRealtime.classList.remove('hidden');
+                logContainer.classList.add('hidden');
             } finally {
                 loadingRealtime.classList.add('hidden');
+                // Tampilkan container jika tidak ada error (termasuk jika log kosong)
+                if (errorRealtime.classList.contains('hidden')) {
+                    logContainer.classList.remove('hidden');
+                }
             }
         }
 
@@ -339,15 +360,15 @@
         function renderLogs(logs) {
             logContainer.innerHTML = '';
             if (logs.length === 0) {
-                logContainer.innerHTML = '<p class="text-center text-gray-200 py-8 text-lg glass-card">Belum ada data presensi yang tercatat.</p>';
+                logContainer.innerHTML = '<p class="text-center text-gray-200 py-8 text-lg glass-card p-6 w-full col-span-full">Belum ada data presensi yang tercatat hari ini.</p>';
             }
 
             logs.forEach(log => {
                 const actionClass = log.action === 'Check-In' ? 'checkin-tag' : 
-                                  (log.action === 'Check-Out' ? 'checkout-tag' : 'bg-gray-700/50 text-gray-200');
+                                     (log.action === 'Check-Out' ? 'checkout-tag' : 'bg-gray-700/50 text-gray-200');
                 
-                const icon = log.action === 'Check-In' ? `<i data-lucide="log-in" class="w-5 h-5"></i>` : 
-                             (log.action === 'Check-Out' ? `<i data-lucide="log-out" class="w-5 h-5"></i>` : `<i data-lucide="alert-triangle" class="w-5 h-5"></i>`);
+                const iconName = log.action === 'Check-In' ? 'log-in' : 
+                                 (log.action === 'Check-Out' ? 'log-out' : 'alert-triangle');
 
                 const logItem = `
                     <div class="glass-card p-4 flex flex-col space-y-2">
@@ -356,19 +377,19 @@
                             <span class="text-sm font-medium text-gray-300">${formatTime(log.timestamp)}</span>
                         </div>
                         
-                        <p class="font-extrabold text-xl truncate">${log.name}</p>
+                        <p class="font-extrabold text-xl truncate" title="${log.name}">${log.name}</p>
                         <p class="text-sm text-gray-300">${log.divisi}</p>
 
                         <div class="flex justify-between items-center pt-2 border-t border-white/10">
                             <span class="text-xs text-gray-400 truncate">${log.uid}</span>
-                            ${icon}
+                            <i data-lucide="${iconName}" class="w-5 h-5"></i>
                         </div>
                     </div>
                 `;
                 logContainer.innerHTML += logItem;
             });
 
-            lucide.createIcons(); // Render icons baru
+            lucide.createIcons(); // Render icons baru setelah injeksi HTML
             logContainer.classList.remove('hidden');
         }
 
@@ -380,13 +401,13 @@
          * Memanggil Apps Script API untuk rekapitulasi.
          */
         async function fetchRekap() {
-            // DEBUGGING: Tampilkan URL di konsol untuk verifikasi
             console.log("Mencoba mengambil rekap dari URL:", GAS_WEB_APP_URL);
             
             if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL.includes("[GANTI")) {
                 errorTextRekap.textContent = "URL API Web App Apps Script belum valid.";
                 errorRekap.classList.remove('hidden');
                 loadingRekap.classList.add('hidden');
+                rekapContainer.innerHTML = '';
                 return;
             }
 
@@ -433,7 +454,7 @@
 
             } catch (error) {
                 console.error('Fetch Rekap Error:', error);
-                errorTextRekap.textContent = 'Gagal memuat rekapitulasi. Pastikan URL Web App sudah benar. Detail: ' + error.message;
+                errorTextRekap.textContent = 'Gagal memuat rekapitulasi. Pastikan Apps Script sudah di-deploy dengan benar. Detail: ' + error.message;
                 errorRekap.classList.remove('hidden');
             } finally {
                 loadingRekap.classList.add('hidden');
@@ -447,25 +468,23 @@
             rekapContainer.innerHTML = '';
 
             if (rekapData.length === 0) {
-                rekapContainer.innerHTML = '<p class="text-center text-gray-200 py-8 text-lg glass-card">Tidak ada data yang cocok dengan filter tanggal/nama.</p>';
+                rekapContainer.innerHTML = '<p class="text-center text-gray-200 py-8 text-lg glass-card p-6">Tidak ada data yang cocok dengan filter tanggal/nama.</p>';
                 return;
             }
 
-            let html = `
-                <div class="space-y-6">
-            `;
+            let html = `<div class="space-y-6">`;
 
             rekapData.forEach(person => {
                 // Card utama untuk total rekap
                 html += `
                     <div class="glass-card p-5">
-                        <div class="flex justify-between items-center border-b border-white/20 pb-3 mb-3">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/20 pb-3 mb-3">
                             <div>
                                 <h3 class="text-xl font-extrabold">${person.name} <span class="text-sm text-gray-300 ml-2">(${person.divisi})</span></h3>
                             </div>
-                            <div class="text-right">
-                                <p class="text-sm text-gray-300">Total Jam Kerja:</p>
-                                <p class="text-2xl font-bold text-green-300">${person.totalDurationFormatted}</p>
+                            <div class="text-right mt-2 sm:mt-0">
+                                <p class="text-sm text-gray-300">Total Durasi Kerja:</p>
+                                <p class="text-3xl font-bold text-green-300">${person.totalDurationFormatted}</p>
                             </div>
                         </div>
 
@@ -476,12 +495,12 @@
                                 ${person.records.sort((a,b) => new Date(b.date) - new Date(a.date)).map(record => `
                                     <div class="glass-card p-3 text-sm flex justify-between items-center bg-white/10">
                                         <div class="flex-1">
-                                            <p class="font-medium">${record.date}</p>
+                                            <p class="font-bold text-base">${record.date}</p>
                                         </div>
-                                        <div class="text-right">
+                                        <div class="text-right space-y-1">
                                             <p>Masuk: <span class="font-bold text-green-300">${record.checkIn}</span></p>
                                             <p>Keluar: <span class="font-bold text-red-300">${record.checkOut}</span></p>
-                                            <p class="mt-1">Durasi: <span class="font-bold text-yellow-300">${record.durationFormatted}</span></p>
+                                            <p class="pt-1 border-t border-white/20">Durasi: <span class="font-extrabold text-yellow-300">${record.durationFormatted}</span></p>
                                         </div>
                                     </div>
                                 `).join('')}
@@ -501,5 +520,3 @@
 </body>
 
 </html>
-
-
